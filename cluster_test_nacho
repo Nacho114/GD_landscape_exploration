@@ -1,0 +1,10 @@
+#PBS -M ignacio.aleman@epfl.ch 
+#PBS -l cput=20:00:00
+#PBS -l mem=511mb
+#PBS -m n
+#PBS -j oe
+#PBS -N cluster_test_nacho
+echo "executed on $HOSTNAME"
+echo "execution started at:  $(date)"
+/usr/local/bin/matlab -nodesktop -nosplash < /home/aleman/GD_exploration/performance_test.m
+echo "execution finished at: $(date)"
