@@ -37,4 +37,4 @@ for n_d = lower_limit:step_size:upper_limit
 end
 
 
-save('estimation_error_d40_with_B0', 'estimation_errors', 'dim', 'iterations');
+save('estimation_error_d40', 'estimation_errors', 'dim', 'iterations');

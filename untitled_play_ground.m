@@ -1,16 +1,16 @@
 
-
-% parameters
-
-n_samples = 20;
 dim = 20;
 w0_norm = 1;
+n_samples = 100;
+
+[w0, B0, x, y] = generateModel(dim, n_samples, w0_norm);
+init_weights = 1 / sqrt(sqrt(dim)) * randn(dim, 1);
 learningRate = 1;
-iterations = 1000;
-trials = 10;
+iterations = 1;
+ 
+ 
+gd = GD(x, y, init_weights, learningRate, iterations, B0)
 
-%init_weights = 1 / sqrt(sqrt(dim)) * randn(dim, 1);
+gd_v = GD_v(x, y, init_weights, learningRate, iterations, B0)
 
-
-s = sample_var( dim, n_samples, w0_norm, learningRate, iterations, trials );
-s
+sum( (gd - gd_v) > 0.0000001)

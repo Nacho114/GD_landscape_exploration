@@ -9,7 +9,7 @@ function [ error_estimate ] = sample_estimation_error( dim, n_samples, w0_norm, 
     
     for i = 1:trials
         init_weights = 1 / sqrt(sqrt(dim)) * randn(dim, 1);
-        [w_est] = GD(x, y, init_weights, learningRate, iterations, B0);
+        [w_est] = GD_v(x, y, init_weights, learningRate, iterations, B0);
         w_estimates{i} = w_est;
     end
     

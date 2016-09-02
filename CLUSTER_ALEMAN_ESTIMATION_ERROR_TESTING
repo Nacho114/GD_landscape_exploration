@@ -1,5 +1,5 @@
 #PBS -M ignacio.aleman@epfl.ch 
-#PBS -l cput=40:00:00
+#PBS -l cput=100:00:00
 #PBS -l mem=511mb
 #PBS -m n
 #PBS -j oe
