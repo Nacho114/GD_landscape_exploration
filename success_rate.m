@@ -3,7 +3,7 @@ cd '/home/aleman/GD_exploration'
 
 % parallelisation option 
 
-parpool(16);
+parpool(4);
 
 % Use parfor instead of for, note that in this example
 % we should use an array cell instead of a vector for the estimation
@@ -22,22 +22,22 @@ dim = 320;
 learningRate = 1;
 w0_norm = 3;
 iterations = 10000; % GD iterations, paper value = 10^4
-trials = 10; % number of different weight initializations for each random model, paper value = 10
+trials = 4; % number of different weight initializations for each random model, paper value = 10
 
 epsilon = 0.001; % default = 0.001
-n_instances = 100; % default = 100
+n_instances = 10; % default = 100
 
 % - - - - 
 
 % storage
 
-success_rate_size = floor((upper_limit - lower_limit) / step_size);
-success_rate_values = zeros(success_rate_size, 1);
+success_rate_size = [1.5];%lower_limit:step_size:upper_limit;
+success_rate_values = zeros(length(success_rate_size), 1);
 
 % - - - - 
-
+index = 1;
 % let n_d = n / d, n = sample size, d = dimension
-for n_d = lower_limit:step_size:upper_limit
+for n_d = success_rate_size
     
     % Think about iterating in another way to avoid using floor function
     n_samples = floor(dim * log(dim) * n_d);
@@ -50,11 +50,12 @@ for n_d = lower_limit:step_size:upper_limit
         
     end
     
+    %sample_variances
     % care in the index normalization n_d / step_size given the step size
-    success_rate_values(n_d / step_size) = sum(sample_variances <= epsilon) / n_instances;
-    
+    success_rate_values(index) = sum(sample_variances) / n_instances;%sum(sample_variances <= epsilon) / n_instances;
+    index = index + 1;
 
 end
 
 
-save('success_rate_d=320', 'success_rate_values', 'dim', 'iterations');
+save('success_rate_d=360', 'success_rate_values', 'dim', 'iterations');

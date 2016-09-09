@@ -1,4 +1,4 @@
-function [ error_estimate ] = sample_estimation_error( dim, n_samples, w0_norm, learningRate, iterations, trials )
+function [ error_estimate ] = L2_sample_estimation_error( dim, n_samples, w0_norm, learningRate, iterations, trials )
     % Returns the empirical inverse of the estimation error, where trials
     % is the number of samples taken, where each sample is generated
     % through a different weight initialization.
@@ -10,7 +10,7 @@ function [ error_estimate ] = sample_estimation_error( dim, n_samples, w0_norm, 
 
     parfor i = 1:trials
         init_weights = 1 / sqrt(sqrt(dim)) * randn(dim, 1);
-        [w_est] = GD_v(x, y, init_weights, learningRate, iterations, B0);
+        [w_est] = GD_L2_v(x, y, init_weights, learningRate, iterations, B0);
         w_estimates{i} = w_est;
     end
 

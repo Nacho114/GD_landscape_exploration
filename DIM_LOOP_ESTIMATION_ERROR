@@ -1,0 +1,11 @@
+#PBS -M ignacio.aleman@epfl.ch 
+#PBS -l cput=600:00:00
+#PBS -l mem=60011mb
+#PBS -m n
+#PBS -j oe
+#PBS -N L2_DIM_LOOP_ESTIMATION_ERROR
+#PBS -l nodes=1:ppn=16:bit64
+echo "executed on $HOSTNAME"
+echo "execution started at:  $(date)"
+/usr/local/bin/matlab -nodesktop -nosplash < /home/aleman/GD_exploration/L2_iterated_estimation_error.m
+echo "execution finished at: $(date)"

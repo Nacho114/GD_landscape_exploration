@@ -1,40 +1,14 @@
-% Cluster settings
-cd '/home/aleman/GD_exploration'
+function [ inv_est_err ] = estimation_error( w_estimates, w0 )
+    % Function that computes the inverse of the estimated error
+    % where W_est and W0 are lists of estimate / true value vectors
 
-% parallelisation option
-parpool(8);
+    inv_est_err = 0;
+    n = length(w_estimates);
 
-% Use parfor instead of for, note that in this example
-% we should use an array cell instead of a vector for the estimation
-% errors. (sliced variable).
-
-% Parameters
-
-step_size = 10;
-lower_limit = 10;
-upper_limit = 100;
-
-dim = 40;
-learningRate = 1;
-w0_norm = 1;
-iterations = 10000; % GD iterations, paper value = 10^4
-trials = 10; % number of different weight initializations for each random model, paper value = 10
-
-
-% storage
-estimation_size = floor((upper_limit - lower_limit) / step_size);
-estimation_errors = zeros(estimation_size, 1);
-
-
-% let n_d = n / d, n = sample size, d = dimension
-for n_d = lower_limit:step_size:upper_limit
+    for i = 1:n
+        inv_est_err = inv_est_err + norm(w_estimates{i} - w0); % 2-norm
+    end
     
-    n_samples = dim * n_d;
-    
-    % care in the index normalization n_d / step_size given the step size
-    estimation_errors(n_d / step_size) = sample_estimation_error(dim, n_samples, w0_norm, learningRate, iterations, trials);
+    inv_est_err = inv_est_err / n;
 
 end
-
-
-save('estimation_error_d40', 'estimation_errors', 'dim', 'iterations');

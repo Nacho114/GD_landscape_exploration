@@ -1,16 +1,20 @@
 
-dim = 20;
-w0_norm = 1;
-n_samples = 100;
 
-[w0, B0, x, y] = generateModel(dim, n_samples, w0_norm);
-init_weights = 1 / sqrt(sqrt(dim)) * randn(dim, 1);
+w0_norm = 1;
+n_samples = 10;
+
 learningRate = 1;
 iterations = 1;
- 
- 
-gd = GD(x, y, init_weights, learningRate, iterations, B0)
+trials = 10;
+dimensions = [5, 10];
 
-gd_v = GD_v(x, y, init_weights, learningRate, iterations, B0)
+success_rate_cell = cell(length(dimensions), 1);
 
-sum( (gd - gd_v) > 0.0000001)
+index = 1;
+ 
+for dim = dimensions
+    success_rate_cell{index} = sample_var(dim, n_samples, w0_norm, learningRate, iterations, trials);
+    success_rate_cell{index}
+    index = index + 1;
+end
+
