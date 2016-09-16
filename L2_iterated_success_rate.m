@@ -13,7 +13,7 @@ parpool(16);
 
 % Parameters
 
-step_size = 0.25;
+step_size = 0.5;
 lower_limit = 0.5;
 upper_limit = 3.5;
 

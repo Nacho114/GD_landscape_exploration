@@ -13,7 +13,7 @@ parpool(16);
 
 % Parameters
 
-step_size = 0.25;
+step_size = 0.5;
 lower_limit = 0.5;
 upper_limit = 3.5;
 
@@ -47,7 +47,6 @@ for dim = dimensions
     % let n_d = n / d, n = sample size, d = dimension
     for n_d = n_d_itr
         
-        % Think about iterating in another way to avoid using floor function
         n_samples = floor(dim * log(dim) * n_d);
         
         sample_variances = zeros(n_instances, 1);

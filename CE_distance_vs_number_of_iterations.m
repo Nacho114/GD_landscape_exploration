@@ -63,8 +63,8 @@ for dim = dimensions
             
             [w0, B0, x, y] = generateModel(dim, n_samples, w0_norm);
             init_weights = 1 / sqrt(sqrt(dim)) * randn(dim, 1);
-            [w_est] = GD_v(x, y, init_weights, learningRate, itr, B0);
-            globabl_estimate = GD_v(x, y, init_weights, learningRate, gl_iterations, B0);
+            [w_est] = GD_CE_v(x, y, init_weights, learningRate, itr, B0);
+            globabl_estimate = GD_CE_v(x, y, init_weights, learningRate, gl_iterations, B0);
             iteration_distances(j) = norm(globabl_estimate - w_est); 
             
             
@@ -89,4 +89,4 @@ for dim = dimensions
     
 end
 
-save('distance_vs_number_of_iterations', 'dist_vs_num_itr_cell', 'dimensions', 'gl_iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');
+save('CE_distance_vs_number_of_iterations', 'dist_vs_num_itr_cell', 'dimensions', 'gl_iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');

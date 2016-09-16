@@ -15,7 +15,9 @@ function [ weights ] = SGD( X, y, weights, learningRate, iterations, B0, batch_s
     
     n_itr = (n_samples - rest) / batch_size;
     
-    for j = 1:floor(iterations / n_itr)
+    normalized_itr = floor(iterations / n_itr);
+    
+    for j = 1:normalized_itr
         
         % Shuffle X and y
         order = randperm(n_samples);

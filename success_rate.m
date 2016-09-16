@@ -18,20 +18,20 @@ lower_limit = 0.5;
 upper_limit = 3.5;
 
 % dimensions = [20, 40, 80, 160, 320];
-dim = 320;
+dim = 20;
 learningRate = 1;
 w0_norm = 3;
-iterations = 10000; % GD iterations, paper value = 10^4
-trials = 4; % number of different weight initializations for each random model, paper value = 10
+iterations = 1000; % GD iterations, paper value = 10^4
+trials = 10; % number of different weight initializations for each random model, paper value = 10
 
 epsilon = 0.001; % default = 0.001
-n_instances = 10; % default = 100
+n_instances = 100; % default = 100
 
 % - - - - 
 
 % storage
 
-success_rate_size = [1.5];%lower_limit:step_size:upper_limit;
+success_rate_size = [0.5, 1, 1.5];%lower_limit:step_size:upper_limit;
 success_rate_values = zeros(length(success_rate_size), 1);
 
 % - - - - 
@@ -46,16 +46,16 @@ for n_d = success_rate_size
     
     parfor i = 1:n_instances
         
-        sample_variances(i) = sample_var(dim, n_samples, w0_norm, learningRate, iterations, trials);
+        sample_variances(i) = CE_sample_var(dim, n_samples, w0_norm, learningRate, iterations, trials);
         
     end
     
     %sample_variances
     % care in the index normalization n_d / step_size given the step size
-    success_rate_values(index) = sum(sample_variances) / n_instances;%sum(sample_variances <= epsilon) / n_instances;
+    success_rate_values(index) = sum(sample_variances <= epsilon) / n_instances;
     index = index + 1;
 
 end
 
 
-save('success_rate_d=360', 'success_rate_values', 'dim', 'iterations');
+save('Pr_CE_success_rate_d=160', 'success_rate_values', 'dim', 'iterations');
