@@ -7,7 +7,7 @@ function [ S_YX ] = sample_var( dim, n_samples, w0_norm, learningRate, iteration
     w_estimates = zeros(dim, trials);
     
     for i = 1:trials
-        init_weights = 1 / sqrt(sqrt(dim)) * randn(dim, 1);
+        init_weights = 1 / sqrt(dim) * randn(dim, 1);
         w_estimates(:,i) = GD_v(x, y, init_weights, learningRate, iterations, B0);
         
     end

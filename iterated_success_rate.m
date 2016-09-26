@@ -47,7 +47,7 @@ for dim = dimensions
     % let n_d = n / d, n = sample size, d = dimension
     for n_d = n_d_itr
         
-        % Think about iterating in another way to avoid using floor function
+ 
         n_samples = floor(dim * log(dim) * n_d);
         
         sample_variances = zeros(n_instances, 1);
@@ -70,4 +70,4 @@ for dim = dimensions
     
 end
 
-save('success_rate_iterations', 'success_rate_cell', 'dimensions', 'iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');
+save('QC_success_rate_iterations_sqrtd', 'success_rate_cell', 'dimensions', 'iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');

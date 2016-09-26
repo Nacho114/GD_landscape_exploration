@@ -69,4 +69,4 @@ for dim = dimensions
     
 end
 
-save('success_rate_iterations_CE', 'success_rate_cell', 'dimensions', 'iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');
+save('CE_success_rate_iterations_sqrtd', 'success_rate_cell', 'dimensions', 'iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');
