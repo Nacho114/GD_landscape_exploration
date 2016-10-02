@@ -3,7 +3,7 @@ cd '/home/aleman/GD_exploration'
 
 % parallelisation option 
 
-parpool(16);
+parpool(32);
 
 % Use parfor instead of for, note that in this example
 % we should use an array cell instead of a vector for the estimation
@@ -13,9 +13,9 @@ parpool(16);
 
 % Parameters
 
-step_size = 0.5;
-lower_limit = 0.5;
-upper_limit = 3.5;
+step_size = 0.1; %.5
+lower_limit = 0.1; %.5
+upper_limit = 0.5; %3.5
 
 dimensions = [20, 40, 80, 160, 320];
 
@@ -69,4 +69,4 @@ for dim = dimensions
     
 end
 
-save('CE_success_rate_iterations_sqrtd', 'success_rate_cell', 'dimensions', 'iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');
+save('CE_success_rate_iterations_sqrtd_lower_bounds', 'success_rate_cell', 'dimensions', 'iterations', 'lower_limit', 'step_size', 'upper_limit', 'dimensions');

@@ -13,11 +13,12 @@ parpool(16);
 
 % Parameters
 
-step_size = 0.5;
+step_size = 0.5; %0
 lower_limit = 0.5;
 upper_limit = 3.5;
 
-dimensions = [20, 40, 80, 160, 320];
+%dimensions = [20, 40, 80, 160, 320];
+dimensions = 20;
 
 learningRate = 1;
 w0_norm = 3;

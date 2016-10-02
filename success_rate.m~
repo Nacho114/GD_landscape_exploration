@@ -3,7 +3,7 @@ cd '/home/aleman/GD_exploration'
 
 % parallelisation option 
 
-parpool(32);
+parpool(4);
 
 % Use parfor instead of for, note that in this example
 % we should use an array cell instead of a vector for the estimation
@@ -21,7 +21,7 @@ upper_limit = 0.5; %3.5
 dim = 20;
 learningRate = 1;
 w0_norm = 3;
-iterations = 10000; % GD iterations, paper value = 10^4
+iterations = 1000; % GD iterations, paper value = 10^4
 trials = 10; % number of different weight initializations for each random model, paper value = 10
 
 epsilon = 0.001; % default = 0.001
@@ -31,7 +31,7 @@ n_instances = 100; % default = 100
 
 % storage
 
-success_rate_size = lower_limit:step_size:upper_limit;
+success_rate_size = [0.5, 1, 1.5];%lower_limit:step_size:upper_limit;
 success_rate_values = zeros(length(success_rate_size), 1);
 
 % - - - - 
@@ -58,4 +58,4 @@ for n_d = success_rate_size
 end
 
 
-save('CE_SUCC_ITR_EXPLORATION_TEST1', 'success_rate_values', 'dim', 'iterations');
+save('Pr_CE_success_rate_d=160', 'success_rate_values', 'dim', 'iterations');
