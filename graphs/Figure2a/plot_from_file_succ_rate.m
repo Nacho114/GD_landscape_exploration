@@ -1,7 +1,7 @@
 
-load('L2_success_rate_iterations_sqrtd.mat');
+load('CE_success_rate_iterations_sqrtd_lower_bounds.mat');
 
-dimensions = {'20', '40', '80', '160', '320'};
+dim = {'20', '40', '80', '160', '320'};
 
 %dimensions = {'160'};
 
@@ -11,19 +11,19 @@ figure % opens new figure window
 
 for i = 1:5
     
+    d = dimensions(i);
     
-    
-    plot(xAxis,success_rate_cell{i});
+    plot((d * log(d) / sqrt(d))*xAxis,success_rate_cell{i});
     
     hold on;
     
 end
 
-title('Success rate of L2 (Using sqrt(d) for ||w_{init}||)')
+title('Success rate of CE (Using sqrt(d) for ||w_{init}||)')
 
-l = legend(dimensions,'FontSize',8,'FontWeight','bold', 'Location','southeast');
+l = legend(dim,'FontSize',8,'FontWeight','bold', 'Location','southeast');
 %title(l,'dimension values')
 
-xlabel('n/(dlog(d))')
+xlabel('n/sqrt(d)')
 ylabel('Success rate')
 
